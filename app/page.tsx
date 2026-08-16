@@ -166,7 +166,6 @@ export default function Home() {
           <div className="table-wrap">
             <div className="table-meta"><span>NLH · Hand #{String(game.handNo).padStart(4, "0")}</span><span>{phaseLabel(game)} · Blinds $25 / $50 · No timer</span></div>
             <div className="poker-table">
-              <div className="felt-mark"><span>THE</span><strong>RIVER LAB</strong></div>
               <div className="pot"><span>POT</span><strong>{money(game.pot)}</strong></div>
               <div className="community">
                 {Array.from({ length: 5 }, (_, index) => game.board[index] ? <CardView key={game.board[index].id} card={game.board[index]} /> : <div className="card-slot" key={index}><span>{index < 3 ? "FLOP" : index === 3 ? "TURN" : "RIVER"}</span></div>)}
