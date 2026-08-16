@@ -81,11 +81,11 @@ nav button.nav-active::after { content: ""; position: absolute; left: 0; top: 10
 .hero-seat .hole-cards { display: flex; }
 .hero-seat .hole-cards .playing-card:first-child { margin-right: -6px; transform: rotate(-5deg); }
 .hero-seat .hole-cards .playing-card:last-child { transform: rotate(4deg); }
-.hero-copy { min-width: 90px; padding: 7px 9px; border-radius: 4px; background: rgba(19,27,24,.9); box-shadow: 0 4px 10px rgba(0,0,0,.18); }
-.hero-copy > div { display: flex; justify-content: space-between; gap: 12px; }
-.hero-copy strong { font-size: 12px; }
-.hero-copy span { color: #d7cfae; font: italic 10px Georgia, serif; }
-.hero-copy b { display: block; margin-top: 3px; font: 700 13px Georgia, serif; }
+.hero-copy { min-width: 145px; padding: 9px 12px; border-radius: 4px; background: rgba(19,27,24,.9); box-shadow: 0 4px 10px rgba(0,0,0,.18); }
+.hero-copy > div { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+.hero-copy strong { font-size: 15px; }
+.hero-copy span { color: #d7cfae; font: 700 13px/1.2 Georgia, serif; }
+.hero-copy b { display: block; margin-top: 5px; font: 700 16px Georgia, serif; }
 .hero-copy em { margin-left: 0; }
 .hero-dealer { display: grid; right: auto; left: -7px; bottom: -3px; }
 
