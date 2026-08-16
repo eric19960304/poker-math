@@ -69,11 +69,11 @@ nav button.nav-active::after { content: ""; position: absolute; left: 0; top: 10
 .opponent-cards { position: absolute; left: 50%; top: -72px; display: flex; transform: translateX(-50%); }
 .opponent-cards .playing-card:first-child { margin-right: -22px; transform: rotate(-8deg); }
 .opponent-cards .playing-card:last-child { transform: rotate(7deg); }
-.count-1 .seat-0 { left: 50%; top: 0; }
-.count-2 .seat-0 { left: 25%; top: 2%; } .count-2 .seat-1 { left: 75%; top: 2%; }
-.count-3 .seat-0 { left: 50%; top: 0; } .count-3 .seat-1 { left: 1%; top: 46%; } .count-3 .seat-2 { left: 99%; top: 46%; }
-.count-4 .seat-0 { left: 27%; top: 3%; } .count-4 .seat-1 { left: 73%; top: 3%; } .count-4 .seat-2 { left: 1%; top: 49%; } .count-4 .seat-3 { left: 99%; top: 49%; }
-.count-5 .seat-0 { left: 50%; top: 0; } .count-5 .seat-1 { left: 19%; top: 12%; } .count-5 .seat-2 { left: 1%; top: 53%; } .count-5 .seat-3 { left: 99%; top: 53%; } .count-5 .seat-4 { left: 81%; top: 12%; }
+.count-1 .seat-0 { left: 50%; top: clamp(105px, 18%, 120px); }
+.count-2 .seat-0 { left: 25%; top: clamp(105px, 18%, 120px); } .count-2 .seat-1 { left: 75%; top: clamp(105px, 18%, 120px); }
+.count-3 .seat-0 { left: 50%; top: clamp(105px, 18%, 120px); } .count-3 .seat-1 { left: 1%; top: 46%; } .count-3 .seat-2 { left: 99%; top: 46%; }
+.count-4 .seat-0 { left: 27%; top: clamp(105px, 18%, 120px); } .count-4 .seat-1 { left: 73%; top: clamp(105px, 18%, 120px); } .count-4 .seat-2 { left: 1%; top: 49%; } .count-4 .seat-3 { left: 99%; top: 49%; }
+.count-5 .seat-0 { left: 50%; top: clamp(105px, 18%, 120px); } .count-5 .seat-1 { left: 19%; top: clamp(120px, 21%, 140px); } .count-5 .seat-2 { left: 1%; top: 53%; } .count-5 .seat-3 { left: 99%; top: 53%; } .count-5 .seat-4 { left: 81%; top: clamp(120px, 21%, 140px); }
 .hero-seat { position: absolute; z-index: 5; left: 50%; bottom: -29px; transform: translate(-50%, 50%); display: flex; align-items: center; gap: 12px; color: white; transition: opacity .2s ease; }
 .hero-seat.folded { opacity: .45; filter: grayscale(1); }
 .hero-seat .hole-cards { display: flex; }
