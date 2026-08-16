@@ -143,7 +143,6 @@ export default function Home() {
   }
 
   const callAmount = Math.max(0, game.currentBet - hero.roundBet);
-  const bestChance = odds.rows.reduce((best, row) => row.probability > best.probability ? row : best, odds.rows[0]);
   const outcomeUnit = odds.cardsToCome === 0 ? "result" : odds.cardsToCome === 1 ? "out" : "combos";
   const winRate = stats.hands ? ((stats.wins / stats.hands) * 100).toFixed(0) : "—";
 
@@ -220,7 +219,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="insight"><span className="insight-icon">↗</span><p><strong>{bestChance.label} is most likely at {formatProbability(bestChance.probability)}%</strong><br/>Calculated across {odds.total.toLocaleString()} possible final river outcomes.</p></div>
             <div className="session-strip"><Stat label="Hands" value={String(stats.hands)}/><Stat label="W–L" value={`${stats.wins}–${stats.losses}`}/><Stat label="Win rate" value={`${winRate}${winRate === "—" ? "" : "%"}`}/></div>
           </aside>
         </section>
