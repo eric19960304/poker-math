@@ -63,7 +63,7 @@ nav button.nav-active::after { content: ""; position: absolute; left: 0; top: 10
 .avatar { position: relative; width: 46px; height: 46px; margin: 0 auto 5px; border: 3px solid #cfb569; border-radius: 50%; background: #262521; display: grid; place-items: center; font-size: 11px; font-weight: 800; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
 .dealer-dot, .hero-dealer { position: absolute; right: -6px; bottom: -4px; width: 20px; height: 20px; display: none; place-items: center; border-radius: 50%; background: white; color: #262521; font: 800 9px Arial, sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,.2); }
 .dealer-dot.visible { display: grid; }
-.opponent-cards { position: absolute; left: 50%; top: -78px; display: flex; transform: translateX(-50%); }
+.opponent-cards { position: absolute; left: 50%; top: -90px; display: flex; transform: translateX(-50%); }
 .opponent-cards .playing-card:first-child { margin-right: -22px; transform: rotate(-8deg); }
 .opponent-cards .playing-card:last-child { transform: rotate(7deg); }
 .count-1 .seat-0 { left: 50%; top: clamp(105px, 18%, 120px); }
