@@ -17,6 +17,10 @@ function money(value: number): string {
   return `$${Math.abs(value).toLocaleString()}`;
 }
 
+function formatProbability(value: number): string {
+  return value > 0 && value < 0.005 ? "<0.01" : value.toFixed(2);
+}
+
 function CardView({ card, hidden = false, small = false }: { card?: Card; hidden?: boolean; small?: boolean }) {
   if (!card || hidden) return <div className={`playing-card card-back ${small ? "small" : ""}`} aria-label="Hidden card"><span>RL</span></div>;
   const red = card.suit === "♥" || card.suit === "♦";
@@ -212,12 +216,12 @@ export default function Home() {
             <div className="odds-list">
               {odds.rows.map((row) => (
                 <div className={`odd-row ${row.probability === 0 ? "zero" : ""}`} key={row.label}>
-                  <div className="odd-label"><span>{row.label}</span><div><small>{row.count.toLocaleString()} {odds.drawCount === 3 ? "combos" : "outs"}</small><strong>{row.probability < .05 && row.probability > 0 ? "<0.1" : row.probability.toFixed(1)}%</strong></div></div>
+                  <div className="odd-label"><span>{row.label}</span><div><small>{row.count.toLocaleString()} {odds.drawCount === 3 ? "combos" : "outs"}</small><strong>{formatProbability(row.probability)}%</strong></div></div>
                   <div className="track"><span style={{ width: `${row.probability}%`, background: probabilityColors[row.category] }}/></div>
                 </div>
               ))}
             </div>
-            <div className="insight"><span className="insight-icon">↗</span><p><strong>{bestChance.label} is most likely at {bestChance.probability.toFixed(1)}%</strong><br/>Calculated across {odds.total.toLocaleString()} possible {odds.drawCount === 3 ? "flops" : odds.drawCount === 0 ? "final boards" : "next cards"}.</p></div>
+            <div className="insight"><span className="insight-icon">↗</span><p><strong>{bestChance.label} is most likely at {formatProbability(bestChance.probability)}%</strong><br/>Calculated across {odds.total.toLocaleString()} possible {odds.drawCount === 3 ? "flops" : odds.drawCount === 0 ? "final boards" : "next cards"}.</p></div>
             <div className="session-strip"><Stat label="Hands" value={String(stats.hands)}/><Stat label="W–L" value={`${stats.wins}–${stats.losses}`}/><Stat label="Win rate" value={`${winRate}${winRate === "—" ? "" : "%"}`}/></div>
           </aside>
         </section>
