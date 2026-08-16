@@ -145,7 +145,6 @@ export default function Home() {
   const callAmount = Math.max(0, game.currentBet - hero.roundBet);
   const bestChance = odds.rows.reduce((best, row) => row.probability > best.probability ? row : best, odds.rows[0]);
   const outcomeUnit = odds.cardsToCome === 0 ? "result" : odds.cardsToCome === 1 ? "out" : "combos";
-  const cardsRemainingLabel = odds.cardsToCome === 0 ? "BOARD COMPLETE" : `${odds.cardsToCome} CARD${odds.cardsToCome === 1 ? "" : "S"} TO COME`;
   const winRate = stats.hands ? ((stats.wins / stats.hands) * 100).toFixed(0) : "—";
 
   return (
@@ -206,7 +205,7 @@ export default function Home() {
           </div>
 
           <aside className="math-panel">
-            <div className="panel-heading"><div><span className="eyebrow">EVENTUAL RIVER ODDS · {cardsRemainingLabel}</span><h1>{odds.cardsToCome === 0 ? "Final hand." : "See the river."}</h1></div><div className="live-dot"><span/>LIVE</div></div>
+            <div className="panel-heading"><h1>{odds.cardsToCome === 0 ? "Final hand." : "See the river."}</h1></div>
             <p className="lede">Exact chance your best five-card hand finishes in each category after all remaining community cards are dealt.</p>
             <div className="mode-switch" role="group" aria-label="Probability information set">
               <button className={mode === "theoretical" ? "selected" : ""} onClick={() => setMode("theoretical")}><strong>Theoretical</strong><span>Known cards only</span></button>
