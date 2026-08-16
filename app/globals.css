@@ -71,7 +71,7 @@ nav button.nav-active::after { content: ""; position: absolute; left: 0; top: 10
 .count-3 .seat-0 { left: 50%; top: clamp(105px, 18%, 120px); } .count-3 .seat-1 { left: 1%; top: 46%; } .count-3 .seat-2 { left: 99%; top: 46%; }
 .count-4 .seat-0 { left: 27%; top: clamp(105px, 18%, 120px); } .count-4 .seat-1 { left: 73%; top: clamp(105px, 18%, 120px); } .count-4 .seat-2 { left: 1%; top: 49%; } .count-4 .seat-3 { left: 99%; top: 49%; }
 .count-5 .seat-0 { left: 50%; top: clamp(105px, 18%, 120px); } .count-5 .seat-1 { left: 19%; top: clamp(120px, 21%, 140px); } .count-5 .seat-2 { left: 1%; top: 53%; } .count-5 .seat-3 { left: 99%; top: 53%; } .count-5 .seat-4 { left: 81%; top: clamp(120px, 21%, 140px); }
-.hero-seat { position: absolute; z-index: 5; left: 50%; bottom: -29px; transform: translate(-50%, 50%); display: flex; align-items: center; gap: 12px; color: white; transition: opacity .2s ease; }
+.hero-seat { position: absolute; z-index: 5; left: 50%; bottom: 36px; transform: translate(-50%, 50%); display: flex; align-items: center; gap: 12px; color: white; transition: opacity .2s ease; }
 .hero-seat.folded { opacity: .45; filter: grayscale(1); }
 .hero-seat .hole-cards { display: flex; }
 .hero-seat .hole-cards .playing-card:first-child { margin-right: -6px; transform: rotate(-5deg); }
