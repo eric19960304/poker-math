@@ -53,23 +53,21 @@ nav button.nav-active::after { content: ""; position: absolute; left: 0; top: 10
 .playing-card.card-back { overflow: hidden; display: grid; place-items: center; border: 2px solid #efe8d9; background: repeating-linear-gradient(45deg, #213f38 0, #213f38 5px, #315a50 5px, #315a50 7px); color: rgba(255,255,255,.65); }
 .playing-card.card-back::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(255,255,255,.4); border-radius: 3px; }
 .playing-card.card-back > span { position: static; z-index: 1; font: 700 10px Arial, sans-serif; letter-spacing: .13em; }
-.playing-card.small { width: 35px; height: 49px; padding: 5px; border-radius: 5px; }
-.playing-card.small strong { font-size: 14px; }
-.playing-card.small > span { right: 4px; bottom: 4px; font-size: 15px; }
 .card-slot { display: grid; place-items: end center; padding-bottom: 6px; border: 1px dashed rgba(255,255,255,.3); background: rgba(0,0,0,.07); color: rgba(255,255,255,.3); }
 .card-slot span { font-size: 8px; font-weight: 800; letter-spacing: .12em; }
 
 .opponent-seats { position: absolute; z-index: 4; inset: 0; pointer-events: none; }
-.seat { position: absolute; min-width: 88px; transform: translate(-50%, -50%); color: white; text-align: center; font-size: 13px; transition: opacity .2s ease; }
+.seat { position: absolute; min-width: 112px; transform: translate(-50%, -50%); color: white; text-align: center; font-size: 15px; transition: opacity .2s ease; }
 .seat strong, .seat > span, .seat em { display: block; }
+.seat strong { font-size: 16px; }
 .seat > span { margin-top: 2px; opacity: .7; }
 .seat em, .hero-copy em { width: max-content; margin: 4px auto 0; padding: 3px 6px; border-radius: 3px; background: #d4af5f; color: #2b261d; font-size: 11px; font-style: normal; font-weight: 800; }
 .seat.folded { opacity: .42; filter: grayscale(1); }
 .avatar { position: relative; width: 46px; height: 46px; margin: 0 auto 5px; border: 3px solid #cfb569; border-radius: 50%; background: #262521; display: grid; place-items: center; font-size: 11px; font-weight: 800; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
 .dealer-dot, .hero-dealer { position: absolute; right: -6px; bottom: -4px; width: 20px; height: 20px; display: none; place-items: center; border-radius: 50%; background: white; color: #262521; font: 800 9px Arial, sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,.2); }
 .dealer-dot.visible { display: grid; }
-.opponent-cards { position: absolute; left: 50%; top: -33px; display: flex; transform: translateX(-50%); }
-.opponent-cards .playing-card:first-child { margin-right: -10px; transform: rotate(-8deg); }
+.opponent-cards { position: absolute; left: 50%; top: -72px; display: flex; transform: translateX(-50%); }
+.opponent-cards .playing-card:first-child { margin-right: -22px; transform: rotate(-8deg); }
 .opponent-cards .playing-card:last-child { transform: rotate(7deg); }
 .count-1 .seat-0 { left: 50%; top: 0; }
 .count-2 .seat-0 { left: 25%; top: 2%; } .count-2 .seat-1 { left: 75%; top: 2%; }

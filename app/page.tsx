@@ -21,11 +21,11 @@ function formatProbability(value: number): string {
   return value > 0 && value < 0.005 ? "<0.01" : value.toFixed(2);
 }
 
-function CardView({ card, hidden = false, small = false }: { card?: Card; hidden?: boolean; small?: boolean }) {
-  if (!card || hidden) return <div className={`playing-card card-back ${small ? "small" : ""}`} aria-label="Hidden card"><span>RL</span></div>;
+function CardView({ card, hidden = false }: { card?: Card; hidden?: boolean }) {
+  if (!card || hidden) return <div className="playing-card card-back" aria-label="Hidden card"><span>RL</span></div>;
   const red = card.suit === "♥" || card.suit === "♦";
   return (
-    <div className={`playing-card ${red ? "red" : ""} ${small ? "small" : ""}`} aria-label={cardName(card)}>
+    <div className={`playing-card ${red ? "red" : ""}`} aria-label={cardName(card)}>
       <strong>{card.rank === "T" ? "10" : card.rank}</strong><span>{card.suit}</span>
     </div>
   );
@@ -174,7 +174,7 @@ export default function Home() {
               <div className={`opponent-seats count-${game.players.length - 1}`}>
                 {game.players.slice(1).map((player, index) => (
                   <div className={`seat seat-${index} ${player.folded ? "folded" : ""}`} key={player.id}>
-                    <div className="opponent-cards"><CardView hidden={game.status !== "complete" || player.folded} card={player.hole[0]} small/><CardView hidden={game.status !== "complete" || player.folded} card={player.hole[1]} small/></div>
+                    <div className="opponent-cards"><CardView hidden={game.status !== "complete" || player.folded} card={player.hole[0]}/><CardView hidden={game.status !== "complete" || player.folded} card={player.hole[1]}/></div>
                     <div className="avatar" style={{ borderColor: player.accent }}>{player.initials}<span className={game.dealerIndex === index + 1 ? "dealer-dot visible" : "dealer-dot"}>D</span></div>
                     <strong>{player.name}</strong><span>{money(player.stack)}</span>{player.roundBet > 0 && <em>{money(player.roundBet)} in</em>}
                   </div>
