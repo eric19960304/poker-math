@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { GameState, Outcome, phaseLabel, playAction, startHand } from "../lib/game";
-import { Card, cardName, evaluateHand, nextDealProbabilities } from "../lib/poker";
+import { Card, cardName, evaluateHand, riverProbabilities } from "../lib/poker";
 
 type Stats = { bankroll: number; wins: number; losses: number; ties: number; hands: number };
 type HistoryEntry = { handNo: number; outcome: Outcome; profit: number; hand: string; detail: string };
@@ -80,7 +80,7 @@ export default function Home() {
   const hero = game?.players[0];
   const odds = useMemo(() => {
     if (!game || !hero) return null;
-    return nextDealProbabilities(hero.hole, game.board, game.deck, mode === "actual");
+    return riverProbabilities(hero.hole, game.board, game.deck, mode === "actual");
   }, [game, hero, mode]);
 
   const currentHand = useMemo(() => {
@@ -143,8 +143,9 @@ export default function Home() {
   }
 
   const callAmount = Math.max(0, game.currentBet - hero.roundBet);
-  const nextDeal = game.board.length === 0 ? "flop" : game.board.length === 3 ? "turn" : game.board.length === 4 ? "river" : "final hand";
   const bestChance = odds.rows.reduce((best, row) => row.probability > best.probability ? row : best, odds.rows[0]);
+  const outcomeUnit = odds.cardsToCome === 0 ? "result" : odds.cardsToCome === 1 ? "out" : "combos";
+  const cardsRemainingLabel = odds.cardsToCome === 0 ? "BOARD COMPLETE" : `${odds.cardsToCome} CARD${odds.cardsToCome === 1 ? "" : "S"} TO COME`;
   const winRate = stats.hands ? ((stats.wins / stats.hands) * 100).toFixed(0) : "—";
 
   return (
@@ -206,8 +207,8 @@ export default function Home() {
           </div>
 
           <aside className="math-panel">
-            <div className="panel-heading"><div><span className="eyebrow">NEXT DEAL ODDS · {nextDeal.toUpperCase()}</span><h1>Read the {nextDeal}.</h1></div><div className="live-dot"><span/>LIVE</div></div>
-            <p className="lede">Exact chance your best five-card hand lands in each category after the next deal.</p>
+            <div className="panel-heading"><div><span className="eyebrow">EVENTUAL RIVER ODDS · {cardsRemainingLabel}</span><h1>{odds.cardsToCome === 0 ? "Final hand." : "See the river."}</h1></div><div className="live-dot"><span/>LIVE</div></div>
+            <p className="lede">Exact chance your best five-card hand finishes in each category after all remaining community cards are dealt.</p>
             <div className="mode-switch" role="group" aria-label="Probability information set">
               <button className={mode === "theoretical" ? "selected" : ""} onClick={() => setMode("theoretical")}><strong>Theoretical</strong><span>Known cards only</span></button>
               <button className={mode === "actual" ? "selected" : ""} onClick={() => setMode("actual")}><strong>Actual</strong><span>Full table known</span></button>
@@ -216,12 +217,12 @@ export default function Home() {
             <div className="odds-list">
               {odds.rows.map((row) => (
                 <div className={`odd-row ${row.probability === 0 ? "zero" : ""}`} key={row.label}>
-                  <div className="odd-label"><span>{row.label}</span><div><small>{row.count.toLocaleString()} {odds.drawCount === 3 ? "combos" : "outs"}</small><strong>{formatProbability(row.probability)}%</strong></div></div>
+                  <div className="odd-label"><span>{row.label}</span><div><small>{row.count.toLocaleString()} {outcomeUnit}</small><strong>{formatProbability(row.probability)}%</strong></div></div>
                   <div className="track"><span style={{ width: `${row.probability}%`, background: probabilityColors[row.category] }}/></div>
                 </div>
               ))}
             </div>
-            <div className="insight"><span className="insight-icon">↗</span><p><strong>{bestChance.label} is most likely at {formatProbability(bestChance.probability)}%</strong><br/>Calculated across {odds.total.toLocaleString()} possible {odds.drawCount === 3 ? "flops" : odds.drawCount === 0 ? "final boards" : "next cards"}.</p></div>
+            <div className="insight"><span className="insight-icon">↗</span><p><strong>{bestChance.label} is most likely at {formatProbability(bestChance.probability)}%</strong><br/>Calculated across {odds.total.toLocaleString()} possible final river outcomes.</p></div>
             <div className="session-strip"><Stat label="Hands" value={String(stats.hands)}/><Stat label="W–L" value={`${stats.wins}–${stats.losses}`}/><Stat label="Win rate" value={`${winRate}${winRate === "—" ? "" : "%"}`}/></div>
           </aside>
         </section>
@@ -258,8 +259,8 @@ function LearnView({ onPlay }: { onPlay: () => void }) {
         <article><span>02</span><h2>Actual odds</h2><p>This teaching mode peeks behind the curtain. It also removes every opponent’s hidden cards, revealing the exact chance based on the deck that truly remains.</p><code>favorable outcomes ÷ real deck outcomes</code></article>
         <article><span>03</span><h2>Why they differ</h2><p>If an opponent holds a heart, your real flush chance falls even though your table-legal estimate does not. Toggle between modes to build intuition for hidden-information variance.</p><code>belief vs. reality</code></article>
       </div>
-      <div className="rank-board"><div><span className="eyebrow">HAND LADDER</span><h2>Every category, strongest first.</h2><p>Your probability rows are exclusive: each possible next deal is counted once, under the strongest five-card category it creates.</p></div><ol>{ranks.map((rank, index) => <li key={rank}><span>{String(index + 1).padStart(2, "0")}</span><strong>{rank}</strong></li>)}</ol></div>
-      <div className="learning-note"><strong>One important detail</strong><p>Pre-flop, the “next deal” is the three-card flop, so the lab evaluates every possible three-card combination. After the flop, it evaluates every single possible turn or river card.</p></div>
+      <div className="rank-board"><div><span className="eyebrow">HAND LADDER</span><h2>Every category, strongest first.</h2><p>Your probability rows are exclusive: each possible completed board is counted once, under the strongest five-card category it creates.</p></div><ol>{ranks.map((rank, index) => <li key={rank}><span>{String(index + 1).padStart(2, "0")}</span><strong>{rank}</strong></li>)}</ol></div>
+      <div className="learning-note"><strong>One important detail</strong><p>At every stage, the lab evaluates every possible combination of the community cards still to come. Impossible final categories stay at zero rather than being assigned artificial probability.</p></div>
     </section>
   );
 }
