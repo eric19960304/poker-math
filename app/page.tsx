@@ -217,7 +217,7 @@ export default function Home() {
             <div className="odds-list">
               {odds.rows.map((row) => (
                 <div className={`odd-row ${row.probability === 0 ? "zero" : ""}`} key={row.label}>
-                  <div className="odd-label"><span>{row.label}</span><div><small>{row.count.toLocaleString()} {outcomeUnit}</small><strong>{formatProbability(row.probability)}%</strong></div></div>
+                  <div className="odd-label"><span>{row.label}</span><div><small>{row.count.toLocaleString()} {outcomeUnit}</small><strong>{row.probability === 0 ? "N/A" : `${formatProbability(row.probability)}%`}</strong></div></div>
                   <div className="track"><span style={{ width: `${row.probability}%`, background: probabilityColors[row.category] }}/></div>
                 </div>
               ))}
