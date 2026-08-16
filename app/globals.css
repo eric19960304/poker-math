@@ -130,14 +130,14 @@ h1 { margin: 7px 0 0; font: 700 clamp(29px, 2.2vw, 35px)/1.03 Georgia, serif; }
 .mode-note { display: flex; gap: 8px; margin-top: 10px; color: #898277; }
 .mode-note > span { flex: none; color: #aa8129; }
 .mode-note p { margin: 0; font: italic 10px/1.4 Georgia, serif; }
-.odds-list { display: grid; gap: 11px; margin-top: 17px; }
+.odds-list { display: grid; gap: 15px; margin-top: 20px; }
 .odd-row { transition: opacity .2s ease; }
 .odd-row.zero { opacity: .42; }
-.odd-label { display: flex; justify-content: space-between; align-items: end; margin-bottom: 5px; font: 11px Georgia, serif; }
-.odd-label > div { display: flex; align-items: baseline; gap: 8px; }
-.odd-label small { color: #9b958a; font: 8px Arial, sans-serif; text-transform: uppercase; }
-.odd-label strong { min-width: 35px; text-align: right; font: 800 11px Arial, sans-serif; }
-.track { height: 4px; overflow: hidden; border-radius: 10px; background: #e5e0d6; }
+.odd-label { display: flex; justify-content: space-between; align-items: end; margin-bottom: 8px; font: 14px/1.2 Georgia, serif; }
+.odd-label > div { display: flex; align-items: baseline; gap: 10px; }
+.odd-label small { color: #9b958a; font: 10px Arial, sans-serif; text-transform: uppercase; }
+.odd-label strong { min-width: 48px; text-align: right; font: 800 15px Arial, sans-serif; }
+.track { height: 8px; overflow: hidden; border-radius: 999px; background: #e5e0d6; }
 .track span { display: block; height: 100%; min-width: 1px; border-radius: inherit; transition: width .25s ease; }
 .insight { display: flex; gap: 10px; margin-top: 18px; padding: 12px; border: 1px solid #d9c99f; border-radius: 5px; background: #f4eddc; }
 .insight-icon { flex: none; width: 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; background: #d7bd75; font-size: 11px; }
