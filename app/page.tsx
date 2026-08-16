@@ -26,7 +26,7 @@ function CardView({ card, hidden = false, small = false }: { card?: Card; hidden
   const red = card.suit === "♥" || card.suit === "♦";
   return (
     <div className={`playing-card ${red ? "red" : ""} ${small ? "small" : ""}`} aria-label={cardName(card)}>
-      <strong>{card.rank}</strong><span>{card.suit}</span>
+      <strong>{card.rank === "T" ? "10" : card.rank}</strong><span>{card.suit}</span>
     </div>
   );
 }
