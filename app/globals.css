@@ -137,7 +137,7 @@ h1 { margin: 7px 0 0; font: 700 clamp(29px, 2.2vw, 35px)/1.03 Georgia, serif; }
 .odd-label > div { display: flex; align-items: baseline; gap: 10px; }
 .odd-label small { color: #9b958a; font: 10px Arial, sans-serif; text-transform: uppercase; }
 .odd-label strong { min-width: 48px; text-align: right; font: 800 15px Arial, sans-serif; }
-.track { height: 8px; overflow: hidden; border-radius: 999px; background: #e5e0d6; }
+.track { height: 4px; overflow: hidden; border-radius: 999px; background: #e5e0d6; }
 .track span { display: block; height: 100%; min-width: 1px; border-radius: inherit; transition: width .25s ease; }
 .insight { display: flex; gap: 10px; margin-top: 18px; padding: 12px; border: 1px solid #d9c99f; border-radius: 5px; background: #f4eddc; }
 .insight-icon { flex: none; width: 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; background: #d7bd75; font-size: 11px; }
